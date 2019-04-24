@@ -7,7 +7,9 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    img:'',
+    num:0
   },
   //事件处理函数
   bindViewTap: function() {
@@ -16,6 +18,7 @@ Page({
     })
   },
   onLoad: function () {
+    console.log(111111111)
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -50,5 +53,30 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  addImage:function () {
+    var _this = this;
+      wx.chooseImage({
+          success:function (res) {
+              _this.setData({
+                  img:res.tempFilePaths[0]
+              })
+
+          }
+      })
+  },
+  addOne:function(){
+    var num = ++this.data.num;
+    this.setData({
+      num: num
+    })
+
+  },
+
+  editThis:function(e){
+    var res = getApp().a;
+    console.log(res)
+    console.log(res.scene)
+
   }
 })
